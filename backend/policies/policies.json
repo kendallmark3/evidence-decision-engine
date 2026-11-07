@@ -1,0 +1,71 @@
+{
+  "version": "2026.11-v1",
+  "description": "Synthetic enterprise AI deployment policies. Fictional — not any real company's policy set.",
+  "policies": [
+    {
+      "id": "POL-001",
+      "title": "Audit logging must be enabled",
+      "evidence": "audit.logging",
+      "rule": { "equals": "enabled" },
+      "remediation": "Enable audit logging for every model invocation and route logs to the central audit store."
+    },
+    {
+      "id": "POL-002",
+      "title": "Model version must be pinned",
+      "evidence": "model.version_pinned",
+      "rule": { "equals": true },
+      "remediation": "Pin an explicit model version in configuration so behavior cannot change underneath the application."
+    },
+    {
+      "id": "POL-003",
+      "title": "Enterprise identity is required",
+      "evidence": "identity.type",
+      "rule": { "in": ["IAM", "SSO", "OIDC"] },
+      "remediation": "Integrate with enterprise identity (IAM, SSO, or OIDC); no shared or static credentials."
+    },
+    {
+      "id": "POL-004",
+      "title": "Egress controls must be documented",
+      "evidence": "governance.egress.documented",
+      "rule": { "equals": true },
+      "remediation": "Document every network destination the application can reach and the control that enforces it."
+    },
+    {
+      "id": "POL-005",
+      "title": "No unauthorized external egress",
+      "evidence": "governance.egress.external_egress",
+      "rule": { "equals": false },
+      "remediation": "Remove external egress, or route it through an approved governed-egress gateway with a registered exception."
+    },
+    {
+      "id": "POL-006",
+      "title": "Human approval required for restricted or confidential data",
+      "when": { "data.classification": { "in": ["restricted", "confidential"] } },
+      "evidence": "governance.human_approval",
+      "rule": { "equals": "required" },
+      "remediation": "Require human approval before outputs that touch restricted or confidential data are acted on."
+    },
+    {
+      "id": "POL-007",
+      "title": "Encryption in transit is required",
+      "evidence": "data.encryption_in_transit",
+      "rule": { "equals": true },
+      "remediation": "Enforce TLS 1.2+ for all traffic between the application, the model gateway, and data stores."
+    },
+    {
+      "id": "POL-008",
+      "title": "Restricted data requires at least 365 days of audit retention",
+      "when": { "data.classification": { "in": ["restricted"] } },
+      "evidence": "audit.retention_days",
+      "rule": { "gte": 365 },
+      "remediation": "Retain audit logs for at least 365 days for applications that process restricted data."
+    },
+    {
+      "id": "POL-009",
+      "title": "Model access must go through the enterprise model gateway",
+      "evidence": "model.gateway",
+      "rule": { "equals": "enterprise-model-gateway" },
+      "remediation": "Route all model calls through the enterprise model gateway instead of calling providers directly."
+    }
+  ]
+}

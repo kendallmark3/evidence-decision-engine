@@ -1,0 +1,2 @@
+-r requirements.txt
+langchain-aws>=0.2

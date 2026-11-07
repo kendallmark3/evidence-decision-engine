@@ -1,0 +1,47 @@
+{
+  "_sample": {
+    "title": "Autonomous Data Export Agent",
+    "expected": "NOT_READY",
+    "why": "Unauthorized external egress"
+  },
+  "application": {
+    "name": "Autonomous Data Export Agent",
+    "description": "Autonomously compiles partner reports and transmits them to an external SFTP endpoint.",
+    "owner": "Partner Operations (fictional)",
+    "use_case": "autonomous data export"
+  },
+  "model": {
+    "provider": "bedrock",
+    "model_id": "anthropic.claude-haiku-v1",
+    "version_pinned": true,
+    "gateway": "enterprise-model-gateway"
+  },
+  "data": {
+    "classification": "confidential",
+    "encryption_at_rest": true,
+    "encryption_in_transit": true
+  },
+  "identity": {
+    "type": "IAM",
+    "least_privilege": false
+  },
+  "audit": {
+    "logging": "enabled",
+    "retention_days": 365
+  },
+  "governance": {
+    "human_approval": "not_required",
+    "autonomy": "autonomous",
+    "egress": {
+      "documented": true,
+      "allowed_destinations": [
+        "enterprise-model-gateway",
+        "sftp.partner-example.com"
+      ],
+      "external_egress": true
+    }
+  },
+  "claims": [
+    "Partner transfers are low risk."
+  ]
+}

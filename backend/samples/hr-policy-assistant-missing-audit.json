@@ -1,0 +1,40 @@
+{
+  "_sample": {
+    "title": "HR Policy Assistant (missing audit)",
+    "expected": "NOT_READY → READY",
+    "why": "Audit evidence missing; demonstrates pause, add evidence, resume, re-evaluate"
+  },
+  "application": {
+    "name": "HR Policy Assistant",
+    "description": "Answers HR benefits questions from the published handbook.",
+    "owner": "People Technology (fictional)",
+    "use_case": "internal Q&A"
+  },
+  "model": {
+    "provider": "bedrock",
+    "model_id": "anthropic.claude-haiku-v1",
+    "version_pinned": true,
+    "gateway": "enterprise-model-gateway"
+  },
+  "data": {
+    "classification": "internal",
+    "encryption_at_rest": true,
+    "encryption_in_transit": true
+  },
+  "identity": {
+    "type": "OIDC",
+    "least_privilege": true
+  },
+  "governance": {
+    "human_approval": "required",
+    "autonomy": "assistive",
+    "egress": {
+      "documented": true,
+      "allowed_destinations": [
+        "enterprise-model-gateway"
+      ],
+      "external_egress": false
+    }
+  },
+  "claims": []
+}

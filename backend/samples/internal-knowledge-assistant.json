@@ -1,0 +1,46 @@
+{
+  "_sample": {
+    "title": "Internal Knowledge Assistant",
+    "expected": "READY",
+    "why": "All mandatory evidence present"
+  },
+  "application": {
+    "name": "Internal Knowledge Assistant",
+    "description": "Answers employee questions from approved internal policy documents.",
+    "owner": "Enterprise Architecture (fictional)",
+    "use_case": "internal Q&A"
+  },
+  "model": {
+    "provider": "bedrock",
+    "model_id": "anthropic.claude-sonnet-v1",
+    "version_pinned": true,
+    "gateway": "enterprise-model-gateway"
+  },
+  "data": {
+    "classification": "internal",
+    "encryption_at_rest": true,
+    "encryption_in_transit": true
+  },
+  "identity": {
+    "type": "SSO",
+    "least_privilege": true
+  },
+  "audit": {
+    "logging": "enabled",
+    "retention_days": 365
+  },
+  "governance": {
+    "human_approval": "required",
+    "autonomy": "assistive",
+    "egress": {
+      "documented": true,
+      "allowed_destinations": [
+        "enterprise-model-gateway"
+      ],
+      "external_egress": false
+    }
+  },
+  "claims": [
+    "Uses only approved internal documents."
+  ]
+}

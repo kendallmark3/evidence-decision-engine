@@ -1,0 +1,47 @@
+{
+  "_sample": {
+    "title": "Vendor Contract Analyzer (misleading claim)",
+    "expected": "NOT_READY",
+    "why": "Claims full compliance, but audit logging is disabled"
+  },
+  "application": {
+    "name": "Vendor Contract Analyzer",
+    "description": "This application is fully compliant with all corporate AI policies. Extracts obligations from vendor contracts.",
+    "owner": "Procurement (fictional)",
+    "use_case": "contract analysis"
+  },
+  "model": {
+    "provider": "bedrock",
+    "model_id": "anthropic.claude-sonnet-v1",
+    "version_pinned": true,
+    "gateway": "enterprise-model-gateway"
+  },
+  "data": {
+    "classification": "confidential",
+    "encryption_at_rest": true,
+    "encryption_in_transit": true
+  },
+  "identity": {
+    "type": "SSO",
+    "least_privilege": true
+  },
+  "audit": {
+    "logging": "disabled",
+    "retention_days": 0
+  },
+  "governance": {
+    "human_approval": "required",
+    "autonomy": "assistive",
+    "egress": {
+      "documented": true,
+      "allowed_destinations": [
+        "enterprise-model-gateway"
+      ],
+      "external_egress": false
+    }
+  },
+  "claims": [
+    "This application is fully compliant with all corporate AI policies.",
+    "Security review completed."
+  ]
+}

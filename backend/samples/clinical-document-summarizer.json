@@ -1,0 +1,46 @@
+{
+  "_sample": {
+    "title": "Clinical Document Summarizer",
+    "expected": "NOT_READY",
+    "why": "Model version not pinned"
+  },
+  "application": {
+    "name": "Clinical Document Summarizer",
+    "description": "Summarizes synthetic clinical notes for care-team review.",
+    "owner": "Clinical Informatics (fictional)",
+    "use_case": "document summarization"
+  },
+  "model": {
+    "provider": "bedrock",
+    "model_id": "anthropic.claude-latest",
+    "version_pinned": false,
+    "gateway": "enterprise-model-gateway"
+  },
+  "data": {
+    "classification": "restricted",
+    "encryption_at_rest": true,
+    "encryption_in_transit": true
+  },
+  "identity": {
+    "type": "IAM",
+    "least_privilege": true
+  },
+  "audit": {
+    "logging": "enabled",
+    "retention_days": 730
+  },
+  "governance": {
+    "human_approval": "required",
+    "autonomy": "assistive",
+    "egress": {
+      "documented": null,
+      "allowed_destinations": [
+        "enterprise-model-gateway"
+      ],
+      "external_egress": false
+    }
+  },
+  "claims": [
+    "Summaries are always reviewed by a clinician."
+  ]
+}
